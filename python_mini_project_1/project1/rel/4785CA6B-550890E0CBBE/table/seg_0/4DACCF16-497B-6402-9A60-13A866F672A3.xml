@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4DACCF16-497B-6402-9A60-13A866F672A3" name="pets">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:18:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="pid" id="0AC390B3-5D8E-123F-21BE-D09E98BCB429">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="E845B109-CEC9-FDC3-DC28-B5E90B57AD35">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="species" id="394D3642-1C69-6EDB-E6A5-724AF3CFB07A">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="kind" id="7A24F5D8-FBC4-A3B1-8174-8BA978EC7A12">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="weight" id="ADAC6CA7-B5F9-7F87-5300-BEB294325199">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="age" id="E2038AEF-3BDB-65DC-1E13-28176AECE064">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="height" id="5CBA5795-9A28-4C26-D831-A2BDDEE7CBA3">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>1</dataTypeScale>
+<ownDataTypeParameters>,3,1</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="birth" id="D9CF952C-CB7F-D1A8-F07E-2C534014800C">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="adopt_date" id="8B9F91FE-B0E3-0BC5-9F0D-6D0487B14BCC">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="report_date" id="FA920EEC-08D8-F70B-6502-D776F76327FC">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:45:52 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="neutered" id="449EB3C6-B046-8CFD-5DE0-C7D3FF43847D">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:53:23 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="owner_id" id="BAC39521-1034-74F6-6416-BD7B1AFAB812">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:53:52 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DB8C592C-1821-7D75-F1F8-C8677D3C1A71" referredColumn="7383C5B8-3015-20C0-A9AE-ED441F68213A"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EEF233E7-5B1B-C5DF-FFC9-6131C9B70CBE" name="pet_PK">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:25:21 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0AC390B3-5D8E-123F-21BE-D09E98BCB429"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1BC330E-86EE-C899-F3AF-F515FAE6C451" name="pets_owners_FK">
+<createdBy>sigyung</createdBy>
+<createdTime>2021-02-22 11:53:52 UTC</createdTime>
+<ownerDesignName>project1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BAC39521-1034-74F6-6416-BD7B1AFAB812"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
