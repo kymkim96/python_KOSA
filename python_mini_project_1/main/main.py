@@ -7,38 +7,52 @@ from pets import pets_crud
 def main():
     while True:
         menu = ui.print_menu()
+        # 반려동물 정보 관리
         if menu == 1:
-            pets_crud.insert(conn)
-            conn.commit()
-        elif menu == 2:
-            owners_crud.insert(conn)
-            conn.commit()
-        elif menu == 3:
             while True:
                 menu_pet = ui.print_menu_pet()
                 if menu_pet == 1:
-                    pass
+                    pets_crud.insert(conn)
+                    conn.commit()
                 elif menu_pet == 2:
-                    pass
+                    pets_crud.update(conn)
+                    conn.commit()
+                elif menu_pet == 3:
+                    pets_crud.delete(conn)
+                    conn.commit()
+                elif menu_pet == 4:
+                    pets_crud.get_pets(conn)
+                elif menu_pet == 5:
+                    pets_crud.get_pet_by_name(conn)
+                elif menu_pet == 6:
+                    pets_crud.get_pets_by_owner(conn)
+                elif menu_pet == 7:
+                    pets_crud.make_csv(conn)
                 elif menu_pet == 0:
                     break
-        elif menu == 4:
+        # 양육자 정보 관리
+        elif menu == 2:
             while True:
                 menu_owner = ui.print_menu_owner()
                 if menu_owner == 1:
-                    pass
+                    owners_crud.insert(conn)
+                    conn.commit()
                 elif menu_owner == 2:
-                    pass
+                    owners_crud.update(conn)
+                    conn.commit()
+                elif menu_owner == 3:
+                    owners_crud.delete(conn)
+                    conn.commit()
+                elif menu_owner == 4:
+                    owners_crud.get_owners(conn)
+                elif menu_owner == 5:
+                    owners_crud.get_owner_by_name(conn)
+                elif menu_owner == 6:
+                    owners_crud.get_owner_by_pet(conn)
+                elif menu_owner == 7:
+                    owners_crud.make_csv(conn)
                 elif menu_owner == 0:
                     break
-        elif menu == 5:
-            pass
-        elif menu == 6:
-            pass
-        elif menu == 7:
-            pass
-        elif menu == 8:
-            pass
         elif menu == 0:
             break
 
