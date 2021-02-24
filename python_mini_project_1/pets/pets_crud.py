@@ -60,12 +60,13 @@ def update(conn):
         cursor.fetchall()
         if cursor.rowcount == 0:
             raise Exception("id is not exist")
-
+        print()
         print("<---------------------------------------------------->")
         print("이름->name, 종->species, 품종->kind, 양육자->owner_id")
         print("체중->weight, 나이->age, 신장->height, 출생일->birth")
         print("입양날짜->adopt_date, 중성화 수술 여부->neutered")
         print("<---------------------------------------------------->")
+        print()
         update_title = input("수정할 항목을 입력하세요: ")
         update_data = input("수정할 내용을 입력하세요: ")
         if (update_title == 'adopt_date') | (update_title == 'birth'):
@@ -75,6 +76,7 @@ def update(conn):
                 where pid = :pid
             """
             cursor.execute(sql, (update_data, pet_id))
+            print()
             print("정보가 수정되었습니다")
         else:
             sql = f"""
@@ -83,6 +85,7 @@ def update(conn):
                 where pid = :pid
             """
             cursor.execute(sql, (update_data, pet_id))
+            print()
             print("정보가 수정되었습니다")
 
     # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것

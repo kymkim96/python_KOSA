@@ -57,10 +57,10 @@ def main():
             break
 
 
-oracle_dsn = cx_Oracle.makedsn("localhost", 1521, sid="xe")
+oracle_dsn = cx_Oracle.makedsn("localhost", 1521, sid="orcl")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:/oracle/instantclient_19_9")
 
 if __name__ == '__main__':
     global conn
-    conn = cx_Oracle.connect(dsn=oracle_dsn, user="hr", password="123456")
+    conn = cx_Oracle.connect(dsn=oracle_dsn, user="hr", password="hr")
     main()

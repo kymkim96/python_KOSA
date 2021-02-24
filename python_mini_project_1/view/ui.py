@@ -8,6 +8,8 @@ def print_menu():
 
 
 def print_menu_pet():
+    print()
+    print()
     print("------------------------------------------------------------")
     print("                   반려동물 관리 시스템")
     print("                    반려동물 정보 관리")
@@ -23,6 +25,8 @@ def print_menu_pet():
 
 
 def print_menu_owner():
+    print()
+    print()
     print("------------------------------------------------------------")
     print("                   반려동물 관리 시스템")
     print("                     양육자 정보 관리")

@@ -74,6 +74,7 @@ def update(conn):
                 where owner_id = :owner_id
             """
             cursor.execute(sql, (update_data, owner_id))
+            print()
             print("정보가 수정되었습니다")
         else:
             sql = f"""
@@ -82,6 +83,7 @@ def update(conn):
                 where owner_id = :owner_id
             """
             cursor.execute(sql, (update_data, owner_id))
+            print()
             print("정보가 수정되었습니다")
 
     # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것
