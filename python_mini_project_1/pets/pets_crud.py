@@ -59,7 +59,6 @@ def update(conn):
         cursor.execute(sql_find_id, (pet_id,))
         cursor.fetchall()
         if cursor.rowcount == 0:
-            print(cursor.rowcount)
             raise Exception("id is not exist")
 
         print("<---------------------------------------------------->")
@@ -112,6 +111,7 @@ def get_pet_by_name(conn):
     cursor.execute(sql)
     for data in cursor:
         pet = pets.Pet(*data)
+        print()
         print(f"| {data[0]} |")
         print(pet)
 
@@ -154,18 +154,32 @@ def delete(conn):
     cursor = conn.cursor()
     try:
         pid = int(input("반려동물 id: "))
+        sql_find_id = """
+                    select pid
+                    from pets
+                    where pid=:pid
+                """
+        cursor.execute(sql_find_id, (pid,))
+        cursor.fetchall()
+        if cursor.rowcount == 0:
+            raise Exception("id is not exist")
+
         sql = """
             delete from pets
             where pid = :pid
         """
         cursor.execute(sql, (pid,))
+        print()
         print("정보가 삭제되었습니다")
     except cx_Oracle.Error as e:
         errorObj, = e.args
+        print()
         print(errorObj.message)
         return
     except Exception as e:
+        print()
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
@@ -182,7 +196,7 @@ def make_csv(conn):
     """
     cursor.execute(sql)
     now = localtime()
-    str_ = 'pets_' + strftime('%Y-%m-%d_%H-%M', now) + '.csv'
+    str_ = 'pets_' + strftime('%Y-%m-%d_%H%M', now) + '.csv'
     with open(str_, 'w', newline='', encoding='utf-8-sig') as f:
         fieldnames = ['pid', 'pet_name', 'species', 'kind',
                       'weight', 'age', 'height', 'birth', 'adopt_date',
@@ -193,4 +207,5 @@ def make_csv(conn):
         for data in cursor:
             pet = pets.Pet(*data)
             dict_writer.writerow(pet.to_dict())
+    print()
     print("csv 파일이 생성되었습니다")

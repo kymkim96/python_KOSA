@@ -57,7 +57,6 @@ def update(conn):
         cursor.execute(sql_find_id, (owner_id,))
         cursor.fetchall()
         if cursor.rowcount == 0:
-            print(cursor.rowcount)
             raise Exception("id is not exist")
 
         print("<", "-"*105, ">", sep="")
@@ -162,18 +161,32 @@ def delete(conn):
     cursor = conn.cursor()
     try:
         owner_id = int(input("양육자 id: "))
+        sql_find_id = """
+                    select owner_id
+                    from owners
+                    where owner_id=:owner_id
+                """
+        cursor.execute(sql_find_id, (owner_id,))
+        cursor.fetchall()
+        if cursor.rowcount == 0:
+            raise Exception("id is not exist")
+
         sql = """
             delete from owners
             where owner_id = :owner_id
         """
         cursor.execute(sql, (owner_id,))
+        print()
         print("정보가 삭제되었습니다")
     except cx_Oracle.Error as e:
         errorObj, = e.args
+        print()
         print(errorObj.message)
         return
     except Exception as e:
+        print()
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
@@ -190,7 +203,7 @@ def make_csv(conn):
     """
     cursor.execute(sql)
     now = localtime()
-    str_ = 'owners_' + strftime('%Y-%m-%d_%H-%M', now) + '.csv'
+    str_ = 'owners_' + strftime('%Y-%m-%d_%H%M', now) + '.csv'
     with open(str_, 'w', newline='', encoding='utf-8-sig') as f:
         fieldnames = ['owner_id', 'owner_name', 'age', 'address',
                       'experience_in_raise', 'did_pre_training',
@@ -200,4 +213,5 @@ def make_csv(conn):
         for data in cursor:
             owner = owners.Owner(*data)
             dict_writer.writerow(owner.to_dict())
+    print()
     print("csv 파일이 생성되었습니다")
