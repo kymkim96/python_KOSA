@@ -32,6 +32,9 @@ def insert(conn):
                         height, birth, adopt_date, neutered))
         print()
         print("정보가 입력되었습니다")
+
+    # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것
+    # cx_Oracle.Error / print(e.args)
     except cx_Oracle.Error as e:
         errorObj, = e.args
         print()
@@ -40,16 +43,30 @@ def insert(conn):
     except Exception as e:
         print()
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
 def update(conn):
     cursor = conn.cursor()
     try:
-        owner_id = int(input("수정할 반려동물 id: "))
+        pet_id = int(input("수정할 반려동물 id: "))
+        sql_find_id = """
+            select pid
+            from pets
+            where pid=:pet_id
+        """
+        cursor.execute(sql_find_id, (pet_id,))
+        cursor.fetchall()
+        if cursor.rowcount == 0:
+            print(cursor.rowcount)
+            raise Exception("id is not exist")
+
+        print("<---------------------------------------------------->")
         print("이름->name, 종->species, 품종->kind, 양육자->owner_id")
         print("체중->weight, 나이->age, 신장->height, 출생일->birth")
         print("입양날짜->adopt_date, 중성화 수술 여부->neutered")
+        print("<---------------------------------------------------->")
         update_title = input("수정할 항목을 입력하세요: ")
         update_data = input("수정할 내용을 입력하세요: ")
         if (update_title == 'adopt_date') | (update_title == 'birth'):
@@ -58,7 +75,7 @@ def update(conn):
                 set {update_title} = to_date(:update_data, 'rr/MM/DD')
                 where pid = :pid
             """
-            cursor.execute(sql, (update_data, owner_id))
+            cursor.execute(sql, (update_data, pet_id))
             print("정보가 수정되었습니다")
         else:
             sql = f"""
@@ -66,15 +83,18 @@ def update(conn):
                 set {update_title} = :update_data
                 where pid = :pid
             """
-            cursor.execute(sql, (update_data, owner_id))
+            cursor.execute(sql, (update_data, pet_id))
             print("정보가 수정되었습니다")
 
+    # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것
+    # cx_Oracle.Error / print(e.args)
     except cx_Oracle.Error as e:
         errorObj, = e.args
         print(errorObj.message)
         return
     except Exception as e:
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
@@ -161,9 +181,9 @@ def make_csv(conn):
         on o.owner_id = p.owner_id
     """
     cursor.execute(sql)
-    # now = localtime()
-    # str_ = 'owners_' + strftime('%Y-%m-%d_%H:%M', now) + '.csv'
-    with open('pets.csv', 'w', newline='', encoding='utf-8-sig') as f:
+    now = localtime()
+    str_ = 'pets_' + strftime('%Y-%m-%d_%H-%M', now) + '.csv'
+    with open(str_, 'w', newline='', encoding='utf-8-sig') as f:
         fieldnames = ['pid', 'pet_name', 'species', 'kind',
                       'weight', 'age', 'height', 'birth', 'adopt_date',
                       'neutered', 'owner_id', 'owner_name',
@@ -172,6 +192,5 @@ def make_csv(conn):
         dict_writer.writeheader()
         for data in cursor:
             pet = pets.Pet(*data)
-            print(pet.to_dict())
             dict_writer.writerow(pet.to_dict())
     print("csv 파일이 생성되었습니다")

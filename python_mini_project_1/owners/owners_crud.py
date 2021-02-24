@@ -30,12 +30,18 @@ def insert(conn):
                         experience_in_raise, did_pre_training,
                         monthly_income, report_date, phone_number))
         print("정보가 입력되었습니다")
+
+    # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것
+    # cx_Oracle.Error / print(e.args)
     except cx_Oracle.Error as e:
         errorObj, = e.args
+        print()
         print(errorObj.message)
         return
     except Exception as e:
+        print()
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
@@ -43,10 +49,23 @@ def update(conn):
     cursor = conn.cursor()
     try:
         owner_id = int(input("수정할 양육자 id: "))
+        sql_find_id = """
+            select owner_id
+            from owners
+            where owner_id=:owner_id
+        """
+        cursor.execute(sql_find_id, (owner_id,))
+        cursor.fetchall()
+        if cursor.rowcount == 0:
+            print(cursor.rowcount)
+            raise Exception("id is not exist")
+
+        print("<", "-"*105, ">", sep="")
         print("성명->name, 나이->age, 주소지->address, 양육 경력->experience_in_raise,",
               " 사전교육 이수 여부->did_pre_training\n",
               "월 수입(단위: 만)->monthly_income, 정기신고일->report_date\n",
               "전화번호->phone_number", sep="")
+        print("<", "-"*105, ">", sep="")
         update_title = input("수정할 항목을 입력하세요: ")
         update_data = input("수정할 내용을 입력하세요: ")
         if update_title == 'report_date':
@@ -66,12 +85,17 @@ def update(conn):
             cursor.execute(sql, (update_data, owner_id))
             print("정보가 수정되었습니다")
 
+    # TODO: 디버깅용이니 꼭 시연 전에 삭제할 것
+    # cx_Oracle.Error / print(e.args)
     except cx_Oracle.Error as e:
         errorObj, = e.args
+        print()
         print(errorObj.message)
         return
     except Exception as e:
+        print()
         print(e.args)
+        print("올바르지 않은 입력값입니다")
         return
 
 
@@ -165,9 +189,9 @@ def make_csv(conn):
         on o.owner_id = p.owner_id
     """
     cursor.execute(sql)
-    # now = localtime()
-    # str_ = 'owners_' + strftime('%Y-%m-%d_%H:%M', now) + '.csv'
-    with open('owners.csv', 'w', newline='', encoding='utf-8-sig') as f:
+    now = localtime()
+    str_ = 'owners_' + strftime('%Y-%m-%d_%H-%M', now) + '.csv'
+    with open(str_, 'w', newline='', encoding='utf-8-sig') as f:
         fieldnames = ['owner_id', 'owner_name', 'age', 'address',
                       'experience_in_raise', 'did_pre_training',
                       'monthly_income', 'report_date', 'phone_number', 'pid', 'pet_name']
